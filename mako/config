@@ -1,0 +1,15 @@
+format=<b>%a</b>: %s\n%b
+
+width=500
+background-color=#000000d0
+
+border-size=2
+border-color=#33ccffee
+border-radius=15
+
+icons=1
+icon-location=left
+
+default-timeout=5000
+max-visible=4
+anchor=top-center

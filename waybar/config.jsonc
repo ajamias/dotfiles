@@ -1,0 +1,99 @@
+// -*- mode: jsonc -*-
+{
+	// "layer": "top", // Waybar at top layer
+	// "position": "bottom", // Waybar position (top|bottom|left|right)
+	"height": 52, // Waybar height (to be removed for auto height)
+	// "width": 1280, // Waybar width
+	"spacing": 4, // Gaps between modules (4px)
+	// Choose the order of the modules
+	"modules-left": [
+		"hyprland/workspaces"
+	],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"custom/cava",
+		"pulseaudio",
+		"temperature",
+		"cpu",
+		"memory",
+		"battery",
+		"network"
+	],
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"warp-on-scroll": false,
+		"format": " {icon}   {name}",
+		"format-icons": {
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
+			"urgent": "",
+			"focused": "",
+			"default": ""
+		}
+	},
+	"clock": {
+		"format": "  {:%a %d %b      %OI:%M %p}",
+		"format-alt": "{:%FT%T%z}",
+		"timezone": "America/New_York",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	"custom/cava": {
+		"exec": "killall -q cava ; cava -p ~/.config/cava/waybar_config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+		"format": "{}",
+		"tooltip": false
+	},
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{icon}   {volume}%",
+		"format-muted": "{icon}   MUTED",
+		"format-bluetooth": "{icon}   {volume}%",
+		"format-bluetooth-muted": "{icon}   MUTED",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", ""]
+		},
+		"on-click": "pavucontrol"
+	},
+	"temperature": {
+		"format": "{icon} {temperatureF}°F",
+		"critical-threshold": 80,
+		"format-icons": ["", ""]
+	},
+	"cpu": {
+		"format": "  {usage}%",
+		"tooltip": false
+	},
+	"memory": {
+		"format": "  {}%"
+	},
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon}  {capacity}%",
+		"format-full": "{icon}  {capacity}%",
+		"format-charging": "{capacity}%  ",
+		"format-plugged": "{capacity}%  ",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"network": {
+		// "interface": "wlp2*", // (Optional) To force the use of this interface
+		"format-wifi": "   {essid}",
+		"format-ethernet": "[{ifname}] {ipaddr}/{cidr}",
+		"tooltip-format": "[{ifname}] via {gwaddr}",
+		"format-linked": "[{ifname}] (No IP)",
+		"format-disconnected": "Disconnected ⚠"
+	}
+}
